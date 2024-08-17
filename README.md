@@ -1,6 +1,8 @@
 # tic-tac-toe
 Tic Tac Toe Web Application using Django
+
 -- SET UP --
+
 1. Clone the Repository
 commands:
 	git clone https://github.com/BhargaviLenka/TicTacToe.git
