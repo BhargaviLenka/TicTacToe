@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic-Tac-Toe Leaderboard</title>
+    <style>
+        body {
+            text-align: center;
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.2),
+                    rgba(255, 255, 255, 0.2)
+                ),
+                 url('/static/image.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            margin-top: 5%;
+            padding: 0;
+            height: 100%;
+
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align:center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+        }
+
+        td {
+            background-color: #fff;
+            color: #333;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1em;
+            text-decoration: none;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            background-color: white;
+            padding: 10px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Matches Played</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Draws</th>
+        </tr>
+        {% for leader in leaders %}
+        <tr>
+            <td>{{ leader.player.name }}</td>
+            <td>{{ leader.wins|add:leader.losses|add:leader.draws }}</td>
+            <td>{{ leader.wins }}</td>
+            <td>{{ leader.losses }}</td>
+            <td>{{ leader.draws }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'index' %}"><b>Back to Home</b></a>
+    {% if player_id %}
+        <a href="{% url 'play' player_id %}"><b>Play</b></a>
+    {% endif %}
+</body>
+</html>

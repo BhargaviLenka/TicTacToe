@@ -9,7 +9,6 @@ class GameManager:
         board = request.POST.get('board')
         move = int(request.POST.get('move'))
         level = request.POST.get('level')
-        print(level)
         board = board[:move] + PlayerConstants.PLAYER_X + board[move + 1:]
         result, winning_board_indices = GameManager.check_winner(board)
         if result == PlayerConstants.PLAYER_X:
@@ -116,7 +115,6 @@ class GameManager:
 
     @staticmethod
     def ai_move(board, level, optimal_percentage=0.6):
-        print(level)
         if level == Levels.EASY:
             return GameManager.random_move(board)
         elif level == Levels.MEDIUM:

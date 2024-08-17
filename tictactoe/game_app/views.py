@@ -23,7 +23,7 @@ def play(request, player_id):
         print(str(error))
         return redirect('index')
     level = result = None
-    if not player or player.id != request.session.get('player_id'):
+    if (player and player.id != request.session.get('player_id')) or not player:
         request.session.flush()
         return redirect('index')
     winning_board_indices = []
